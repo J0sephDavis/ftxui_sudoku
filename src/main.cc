@@ -114,35 +114,11 @@ class sudoku {
 				std::move(analyzer)
 			});
 			//initializes the values.. probably could've just used a for loop
-			solved_col(0);
-			solved_col(1);
-			solved_col(2);
-			solved_col(3);
-			solved_col(4);
-			solved_col(5);
-			solved_col(6);
-			solved_col(7);
-			solved_col(8);
-			
-			solved_row(0);
-			solved_row(1);
-			solved_row(2);
-			solved_row(3);
-			solved_row(4);
-			solved_row(5);
-			solved_row(6);
-			solved_row(7);
-			solved_row(8);
-			
-			solved_blok(0);
-			solved_blok(1);
-			solved_blok(2);
-			solved_blok(3);
-			solved_blok(4);
-			solved_blok(5);
-			solved_blok(6);
-			solved_blok(7);
-			solved_blok(8);
+			for (auto iterator = 0; iterator <=8; iterator++) {
+				solved_col(iterator);
+				solved_row(iterator);
+				solved_blok(iterator);
+			}
 		};
 	private:
 		//checks if the passed vector contains each digit
