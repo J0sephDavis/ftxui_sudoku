@@ -48,11 +48,11 @@ class sudoku {
 							//does return false prevent other function calls? Is it necessary? Whats the hierarchy
 							else return false;
 						}));
-					if (++count_col%3 == 0 and count_col <=8) tmpRow.push_back(Renderer([&]{return separator();}));
+					if (++count_col%3 == 0 and count_col <8) tmpRow.push_back(Renderer([&]{return separator();}));
 				}
 				//add the cosntructed row to the board, as well as passing the selector for column position by ref
 				board_inner.push_back(Container::Horizontal(tmpRow, &x));
-				if (++count_row%3 == 0) board_inner.push_back(Renderer([&]{return separator();}));
+				if (++count_row%3 == 0 and count_row<8) board_inner.push_back(Renderer([&]{return separator();}));
 			}
 			Component analyzer = Renderer([&]{
 				return flexbox({
