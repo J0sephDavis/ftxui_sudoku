@@ -30,6 +30,7 @@ project(ftxui_sudoku
 )
 add_executable(ftxui_sudoku 
 	src/main.cc
+	src/solver.cc
 )
 
 target_include_directories(ftxui_sudoku PRIVATE src)
