@@ -210,24 +210,4 @@ bool sudoku_board::solver_2() {
  * Iterate over the list of pointers and check possibly moves 1,9 in each position and then checking validity of the entire board
  * */
 
-//int main(int argc, char** argv) {
-//	std::vector<std::vector<int>> values = {
-//		{9,6,8,1,3,5,2,4,7}, //{9,6,8,1,3,5,2,4,7},
-//		{1,3,7,8,4,2,9,5,6}, //{1,3,7,8,4,2,9,5,6},
-//		{0,2,5,9,0,7,3,8,0}, //{4,2,5,9,6,7,3,8,1},
-//		{7,8,2,6,1,3,4,9,5}, //{7,8,2,6,1,3,4,9,5},
-//		{3,1,4,5,9,8,7,6,2}, //{3,1,4,5,9,8,7,6,2},
-//		{5,9,6,2,0,4,8,1,3}, //{5,9,6,2,7,4,8,1,3},
-//		{8,7,9,3,5,1,6,2,4}, //{8,7,9,3,5,1,6,2,4},
-//		{6,4,1,7,2,9,5,3,8}, //{6,4,1,7,2,9,5,3,8},
-//		{2,5,3,4,8,6,1,7,9}  //{2,5,3,4,8,6,1,7,9} 
-//	};
-//	std::cout << "INPUT:";
-//	auto s = sudoku_board(std::move(values));
-//	s.solve();
-//	//need to validate solutions. No indications of the solutions validity if the initial set is contradictory.
-//	std::cout << "OUTPUT:";
-//	s.show_board();
-//	return 1;
-//}
 #endif
