@@ -47,7 +47,6 @@ class sudoku : public sudoku_board {
 				board_inner.push_back(Container::Horizontal(row_builder));
 				if ((_row+1)%3 == 0 and _row < 8) board_inner.push_back(Renderer([&]{return separator();}));
 			}
-			//Component that will show validation errors
 			//sets the board component
 			this->board_component = Container::Horizontal({
 				Container::Vertical(std::move(board_inner))
