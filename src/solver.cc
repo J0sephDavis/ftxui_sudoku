@@ -9,14 +9,13 @@ class sudoku_board {
 		sudoku_board(std::vector<std::vector<int>> _board_values)
 			: board_values(_board_values)
 		{
+			//Initializes the replacement mask
 			for (int r = 0; r < 9; r++) {
 				std::vector<bool> temp_row;
 				for (int c = 0; c < 9; c++) temp_row.push_back(board_values[r][c] == 0);
 				replacement_mask.push_back(temp_row);
 			};
-	//		for (auto r : replacement_mask) { for (auto c : r) {std::cout << c << ",";} std::cout << "\n";};
 		};
-		inline void show_board();
 		inline static bool replacement_possible(int _row, int _col, int n, std::vector<std::vector<int>> _board);
 		inline void solve(unsigned int method = 0) {
 			if (method == 0) solver_2();
@@ -28,8 +27,10 @@ class sudoku_board {
 		inline std::vector<int> get_row(unsigned int _row);
 		inline std::vector<int> get_unit(unsigned int _unit);
 		inline bool update_cell(unsigned int _row, unsigned int _col, int n);
+	public:
 		std::vector<std::vector<int>> board_values;
 	private:
+		inline void show_board();
 		std::vector<std::vector<bool>> replacement_mask;
 		inline static std::vector<std::vector<int>> solver(std::vector<std::vector<int>> _board_values);
 		inline static bool checkNine(std::vector<int> _vector);
@@ -90,6 +91,7 @@ std::vector<int> sudoku_board::get_unit(unsigned int _unit) {
 			board_values[2 + off_y][0 + off_x],board_values[2 + off_y][1 + off_x],board_values[2 + off_y][2 + off_x]
 		}));
 }
+//Prints the board values
 void sudoku_board::show_board() {
 	std::cout << "\n";
 	for (int row = 0; row < board_values.size(); row++) {
@@ -98,6 +100,7 @@ void sudoku_board::show_board() {
 		std::cout << "\n";
 	}
 }
+//
 bool sudoku_board::validator(std::vector<std::vector<int>> _board_values) {
 	//get_row/get_column/get_unit are not being used because they aren't static.
 	//Validate Rows
@@ -142,6 +145,7 @@ bool sudoku_board::validator(std::vector<std::vector<int>> _board_values) {
 	return true;
 }
 
+//returns true if the vector contains numbers [1,9] from vector locations [0,8]. Does not throw any exceptions.
 bool sudoku_board::checkNine(std::vector<int> _vector) {
 	bool values[] = {0,0,0,0,0,0,0,0,0};
 	for (auto& value : _vector) values[value-1] = 1;
@@ -151,6 +155,7 @@ bool sudoku_board::checkNine(std::vector<int> _vector) {
 		and values[6] and values[7]
 		and values[8]); 
 }
+//returns true if the the specified cell can accept the value 'n'. Otherwise, returns false.
 bool sudoku_board::replacement_possible(int _row, int _col, int n, std::vector<std::vector<int>> _board) {
 	for (int r = 0; r < 9; r++) {
 		if (_board[r][_col] == n) return false;
@@ -183,7 +188,7 @@ std::vector<std::vector<int>> sudoku_board::solver(std::vector<std::vector<int>>
 	} 
 	return _board_values;
 }
-//solves the board using recursion directly on the classes board. Likely efficient
+//solves the board using recursion on the class' board. Likely efficient(compared to solver() which passes the matrix every time)
 bool sudoku_board::solver_2() {
 	//If we have found a valid solution, disable backtracking by returning 1(this causes the trees to collapse)
 	if (is_valid() == true)	return 1;	
