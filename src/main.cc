@@ -42,9 +42,10 @@ class sudoku : public sudoku_board {
 							return true;
 						})
 					);
+					//Adds separators to form each unit
 					if ((_col+1)%3 == 0 and _col < 8) row_builder.push_back(Renderer([&]{return separator();}));
 				}
-				board_inner.push_back(Container::Horizontal(row_builder));
+				board_inner.push_back(Container::Horizontal(row_builder, &col_sync));
 				if ((_row+1)%3 == 0 and _row < 8) board_inner.push_back(Renderer([&]{return separator();}));
 			}
 			//sets the board component
@@ -56,6 +57,8 @@ class sudoku : public sudoku_board {
 		bool done() {return is_valid();};
 		//
 		const std::function<void()> quitFunc;
+		//used by the board component to maintain the column index while moving vertically
+		int col_sync = 0;
 	public:
 		Component board_component;
 };
